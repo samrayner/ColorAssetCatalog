@@ -1,0 +1,38 @@
+cyclomatic_complexity:
+  ignores_case_statements: true
+
+disabled_rules:
+  - line_length
+  - force_unwrapping
+  - identifier_name
+  - trailing_whitespace
+  - statement_position
+  - type_body_length
+  - file_length
+  - colon
+  #- force_cast
+  #- force_try
+
+opt_in_rules:
+  #- attributes
+  - closure_end_indentation
+  - closure_spacing
+  #- conditional_returns_on_newline
+  #- empty_count
+  - explicit_init
+  #- explicit_type_interface
+  - fatal_error_message
+  #- file_header
+  - first_where
+  #- force_unwrapping
+  #- implicitly_unwrapped_optional
+  - nimble_operator
+  #- number_separator
+  #- object_literal
+  #- operator_usage_whitespace
+  - overridden_super_call
+  #- private_outlet
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  #- sorted_imports
+  #- switch_case_on_newline

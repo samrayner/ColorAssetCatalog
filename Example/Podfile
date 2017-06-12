@@ -1,6 +1,8 @@
 use_frameworks!
 
 target 'ColorAssetCatalog_Example' do
+  platform :ios, '9.0'
+
   pod 'ColorAssetCatalog', :path => '../'
 
   target 'ColorAssetCatalog_Tests' do

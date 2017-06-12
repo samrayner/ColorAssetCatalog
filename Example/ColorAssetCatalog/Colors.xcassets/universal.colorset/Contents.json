@@ -1,0 +1,20 @@
+{
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "colors" : [
+    {
+      "idiom" : "universal",
+      "color" : {
+        "color-space" : "srgb",
+        "components" : {
+          "red" : 0.3862639343326787,
+          "alpha" : 1,
+          "blue" : 0.8626724227261334,
+          "green" : 1
+        }
+      }
+    }
+  ]
+}

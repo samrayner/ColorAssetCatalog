@@ -1,0 +1,6 @@
+framework module ColorAssetCatalog {
+  umbrella header "ColorAssetCatalog-umbrella.h"
+
+  export *
+  module * { export * }
+}
