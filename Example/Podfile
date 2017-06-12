@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ColorAssetCatalog_Example' do
+  pod 'ColorAssetCatalog', :path => '../'
+
+  target 'ColorAssetCatalog_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
