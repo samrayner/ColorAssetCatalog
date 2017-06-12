@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ColorAssetCatalog'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of ColorAssetCatalog.'
+  s.version          = '0.1.1'
+  s.summary          = 'Adds iOS 9+ compatibility for named colors in asset catalogs.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,20 +18,20 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  This Pod adds iOS 9+ compatibility for named colors in asset catalogs. It extends UIColor with a new optional initializer: `UIColor(asset:)` that works in the same way as `UIColor(named:)`.
                        DESC
 
   s.homepage         = 'https://github.com/Sam Rayner/ColorAssetCatalog'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Sam Rayner' => 'sam.rayner@thefloow.com' }
+  s.author           = { 'Sam Rayner' => 'sam@samrayner.com' }
   s.source           = { :git => 'https://github.com/Sam Rayner/ColorAssetCatalog.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://twitter.com/samrayner'
 
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'ColorAssetCatalog/Classes/**/*'
-  
+
   # s.resource_bundles = {
   #   'ColorAssetCatalog' => ['ColorAssetCatalog/Assets/*.png']
   # }

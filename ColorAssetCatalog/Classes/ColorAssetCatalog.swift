@@ -6,9 +6,10 @@
 //
 
 class ColorAssetCatalog {
-    var cgColors: [String: CGColor] = [:]
-
     static let shared = ColorAssetCatalog()
+    var catalogName = "Colors"
+    var cachingEnabled = true
+    var cgColors: [String: CGColor] = [:]
 
     private init() {
         NotificationCenter.default.addObserver(self, selector: #selector(clearCache), name: .UIApplicationDidReceiveMemoryWarning, object: nil)
@@ -69,7 +70,7 @@ class ColorAssetCatalog {
     }
 
     func asset(named name: String) -> ColorAsset? {
-        guard let catalog = Bundle.main.resourceURL?.appendingPathComponent("Colors.xcassets"),
+        guard let catalog = Bundle.main.resourceURL?.appendingPathComponent("\(catalogName).xcassets"),
             let files = try? FileManager.default.contentsOfDirectory(at: catalog, includingPropertiesForKeys: nil, options: []),
             let colorset = files.first(where: { $0.lastPathComponent == "\(name).colorset" }),
             let data = try? Data(contentsOf: colorset.appendingPathComponent("Contents.json")),
@@ -98,9 +99,16 @@ class ColorAssetCatalog {
     }
 
     func cgColor(named name: String) -> CGColor? {
-        if let cached = cgColors[name] { return cached }
+        if let cached = cgColors[name], cachingEnabled {
+            return cached
+        }
+
         let cgColor = asset(named: name)?.cgColor
-        cgColors[name] = cgColor
+
+        if cachingEnabled {
+            cgColors[name] = cgColor
+        }
+
         return cgColor
     }
 }
