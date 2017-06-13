@@ -5,60 +5,110 @@
 //  Created by Sam Rayner on 12/06/2017.
 //
 
-class ColorAssetCatalog {
-    static let shared = ColorAssetCatalog()
-    var catalogName = "Colors"
-    var cachingEnabled = true
-    var cgColors: [String: CGColor] = [:]
+struct ColorAssetCatalog: Decodable {
+    var colors: [ColorAsset]
+}
 
-    private init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(clearCache), name: .UIApplicationDidReceiveMemoryWarning, object: nil)
+struct ColorAsset: Decodable {
+    private enum CodingKeys: String, CodingKey {
+        case idiomString = "idiom"
+        case color
     }
 
-    @objc func clearCache() {
-        cgColors.removeAll()
+    var idiomString: String
+    var idiom: UIUserInterfaceIdiom? {
+        switch idiomString {
+        case "universal":
+            return .unspecified
+        case "iphone":
+            return .phone
+        case "ipad":
+            return .pad
+        case "tv":
+            return .tv
+        default:
+            return nil
+        }
     }
 
-    func asset(named name: String) -> ColorAsset? {
-        guard let catalog = Bundle.main.resourceURL?.appendingPathComponent("\(catalogName).xcassets"),
-            let files = try? FileManager.default.contentsOfDirectory(at: catalog, includingPropertiesForKeys: nil, options: []),
-            let colorset = files.first(where: { $0.lastPathComponent == "\(name).colorset" }),
-            let data = try? Data(contentsOf: colorset.appendingPathComponent("Contents.json")),
-            let json = try? JSONSerialization.jsonObject(with: data, options: []),
-            let jsonColors = (json as? [String: Any])?["colors"] as? [[String: Any]]
-            else {
-                return nil
+    var color: Color
+
+    var colorComponents: [CGFloat] {
+        return [color.components.red, color.components.green, color.components.blue, color.components.alpha]
+    }
+
+    var cgColor: CGColor? {
+        guard let colorSpace = color.colorSpace else { return nil }
+        return CGColor(colorSpace: colorSpace, components: colorComponents)
+    }
+}
+
+extension UIUserInterfaceIdiom: Decodable {}
+
+extension ColorAsset {
+    struct Color: Decodable {
+        private enum CodingKeys: String, CodingKey {
+            case components
+            case colorSpaceString = "color-space"
         }
 
-        var universalAsset: ColorAsset?
-        var idiomAsset: ColorAsset?
+        var components: Components
 
-        for colorJson in jsonColors {
-            guard let color = ColorAsset(json: colorJson) else { continue }
-            switch color.idiom {
-            case UIDevice.current.userInterfaceIdiom?:
-                idiomAsset = color
-            case .unspecified?:
-                universalAsset = color
+        var colorSpaceString: String
+        var colorSpace: CGColorSpace? {
+            return CGColorSpace(name: colorSpaceName)
+        }
+        var colorSpaceName: CFString {
+            switch colorSpaceString {
+            case "srgb":
+                return CGColorSpace.sRGB
+            case "display-P3":
+                if #available(iOS 9.3, *) {
+                    return CGColorSpace.displayP3
+                } else {
+                    return CGColorSpace.sRGB
+                }
+            case "gray-gamma-22":
+                return CGColorSpace.genericGrayGamma2_2
+            case "extended-gray":
+                if #available(iOS 10.0, *) {
+                    return CGColorSpace.extendedGray
+                } else {
+                    return CGColorSpace.genericGrayGamma2_2
+                }
+            case "extended-srgb":
+                if #available(iOS 10.0, *) {
+                    return CGColorSpace.extendedSRGB
+                } else {
+                    return CGColorSpace.sRGB
+                }
+            case "extended-linear-srgb":
+                if #available(iOS 10.0, *) {
+                    return CGColorSpace.extendedLinearSRGB
+                } else {
+                    return CGColorSpace.genericRGBLinear
+                }
             default:
-                break
+                return CGColorSpace.sRGB
             }
         }
-
-        return idiomAsset ?? universalAsset
     }
+}
 
-    func cgColor(named name: String) -> CGColor? {
-        if let cached = cgColors[name], cachingEnabled {
-            return cached
+extension ColorAsset.Color {
+    struct Components: Decodable {
+        var alpha: CGFloat = 1
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+
+        var white: CGFloat? {
+            didSet {
+                guard let white = white else { return }
+                red = white
+                green = white
+                blue = white
+            }
         }
-
-        let cgColor = asset(named: name)?.cgColor
-
-        if cachingEnabled {
-            cgColors[name] = cgColor
-        }
-
-        return cgColor
     }
 }

@@ -10,7 +10,7 @@ public extension UIColor {
         if #available(iOS 11.0, *) {
             self.init(named: name)
         } else {
-            guard let cgColor = ColorAssetCatalog.shared.cgColor(named: name) else { return nil }
+            guard let cgColor = ColorAssetManager.shared.cgColor(named: name) else { return nil }
             self.init(cgColor: cgColor)
         }
     }
