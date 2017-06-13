@@ -27,7 +27,7 @@ class DemoViewController: UIViewController {
         advanceColor()
     }
 
-    func didTap(_ sender: UITapGestureRecognizer) {
+    @objc func didTap(_ sender: UITapGestureRecognizer) {
         advanceColor()
     }
 
