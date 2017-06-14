@@ -12,8 +12,9 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-- Xcode 9+
 - iOS 9+
+- Xcode 9+
+- Swift 4
 
 ## Installation
 
@@ -30,7 +31,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 - By default, colors are lazily loaded to avoid re-parsing the asset JSON on subsequent use. Cached colors are released if the app receives a memory warning.
 - You can disable in-memory caching of colors using `ColorAssetManager.shared.cachingEnabled = false`.
 - Device-specific colors are supported except _Watch_ and _Mac_. You can toggle them for the Color Set in the Inspector.
-- If P3 (wide color gamut) colors are provided they are given preference whether or not the device has a P3 display. Please tweet [@samrayner][tw] if you know of a way to detect whether a device has a P3 display at run-time.
+- P3 (wide gamut) specific colors are supported on iOS 10+. You can toggle them for the Color Set in the Inspector.
 
 ## Author
 

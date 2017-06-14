@@ -29,21 +29,30 @@ class ColorAssetManager {
                 return nil
         }
 
-        var universalAsset: ColorAsset?
-        var idiomAsset: ColorAsset?
+        var universalAssets: [ColorAsset] = []
+        var idiomAssets: [ColorAsset] = []
 
         for color in catalog.colors {
             switch color.idiom {
             case UIDevice.current.userInterfaceIdiom?:
-                idiomAsset = color
+                idiomAssets.append(color)
             case .unspecified?:
-                universalAsset = color
+                universalAssets.append(color)
             default:
                 break
             }
         }
 
-        return idiomAsset ?? universalAsset
+        let assets = idiomAssets + universalAssets
+
+        if #available(iOS 10, *) {
+            if UIScreen.main.traitCollection.displayGamut == .P3 {
+                let p3Assets = assets.filter { $0.color.displayGamut == .P3 }
+                return p3Assets.first ?? assets.first
+            }
+        }
+
+        return assets.first
     }
 
     func cgColor(named name: String) -> CGColor? {

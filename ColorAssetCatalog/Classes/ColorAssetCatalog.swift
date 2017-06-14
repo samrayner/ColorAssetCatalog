@@ -92,6 +92,11 @@ extension ColorAsset {
                 return CGColorSpace.sRGB
             }
         }
+
+        @available(iOS 10, *)
+        var displayGamut: UIDisplayGamut {
+            return colorSpaceName == CGColorSpace.displayP3 ? .P3 : .SRGB
+        }
     }
 }
 
