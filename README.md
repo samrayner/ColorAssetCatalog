@@ -18,7 +18,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-1. Add  `pod "ColorAssetCatalog", :git => 'https://github.com/samrayner/ColorAssetCatalog.git'` to your Podfile
+1. Add  `pod "ColorAssetCatalog"` to your Podfile
 2. Run `pod install`
 3. Add an Asset Catalog to your project called _Colors.xcassets_
 4. Add a _New Copy Files Phase_ to your target that copies _Colors.xcassets_ to the _Resources_ destination (leave _Subpath_ blank)

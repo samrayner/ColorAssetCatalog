@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
   This Pod adds iOS 9+ compatibility for named colors in asset catalogs. It extends UIColor with a new optional initializer: `UIColor(asset:)` that works in the same way as `UIColor(named:)`.
                        DESC
 
-  s.homepage         = 'https://github.com/Sam Rayner/ColorAssetCatalog'
+  s.homepage         = 'https://github.com/samrayner/ColorAssetCatalog'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Sam Rayner' => 'sam@samrayner.com' }
-  s.source           = { :git => 'https://github.com/Sam Rayner/ColorAssetCatalog.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/samrayner/ColorAssetCatalog.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/samrayner'
 
   s.ios.deployment_target = '9.0'
