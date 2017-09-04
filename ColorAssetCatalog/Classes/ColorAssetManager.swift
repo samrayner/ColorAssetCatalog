@@ -5,17 +5,26 @@
 //  Created by Sam Rayner on 12/06/2017.
 //
 
-class ColorAssetManager {
-    static let shared = ColorAssetManager()
-    var catalogName = "Colors"
-    var cachingEnabled = true
+///Provides access to and caching of colors in an asset catalog.
+///For general use, use UIColor(asset:) rather than this class.
+public class ColorAssetManager {
+    ///The singleton instance to change settings on.
+    public static let shared = ColorAssetManager()
+
+    ///The name of the asset catalog to fetch colors from.
+    public var catalogName = "Colors"
+
+    ///Whether to cache colors in memory as they are accessed.
+    public var cachingEnabled = true
+
     var cgColors: [String: CGColor] = [:]
 
     private init() {
         NotificationCenter.default.addObserver(self, selector: #selector(clearCache), name: .UIApplicationDidReceiveMemoryWarning, object: nil)
     }
 
-    @objc func clearCache() {
+    ///Clear all used color objects from memory.
+    @objc public func clearCache() {
         cgColors.removeAll()
     }
 

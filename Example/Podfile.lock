@@ -1,5 +1,5 @@
 PODS:
-  - ColorAssetCatalog (0.3.0)
+  - ColorAssetCatalog (0.4.0)
 
 DEPENDENCIES:
   - ColorAssetCatalog (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ColorAssetCatalog: 9c76c2cc967a38ee13dc05278edf86eedf82484f
+  ColorAssetCatalog: 1ba2a22174491585f217e4c8cb617221dd4ec8a2
 
 PODFILE CHECKSUM: 89fa1c485c40cfe868239bf0487f00e30a7e49da
 
