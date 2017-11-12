@@ -10,6 +10,8 @@ import UIKit
 import ColorAssetCatalog
 
 class DemoViewController: UIViewController {
+    @IBOutlet private var mainLabel: UILabel!
+
     let colorNames = ["universal", "device-specific", "p3", "missing"]
 
     var currentColorName: String? {
@@ -22,6 +24,11 @@ class DemoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let textColor = UIColor(asset: "text-color") {
+            mainLabel.attributedText = NSAttributedString(string: "Demo", attributes: [.foregroundColor: textColor])
+        }
+
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap(_:)))
         view.addGestureRecognizer(tapRecognizer)
         advanceColor()

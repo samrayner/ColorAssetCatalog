@@ -27,6 +27,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 - Copying `Colors.xcassets` to your app's Resources directory bypasses Apple's optimisations around Asset Catalogs. Think carefully whether this solution is right for you.
 - You can name your `.xcassets` file something else: declare `ColorAssetManager.shared.catalogName = "OtherName"` before using `UIColor(asset:)`.
+- You can set the Bundle where your asset catalog resides: set `ColorAssetManager.shared.bundle` before using `UIColor(asset:)` or use `UIColor(asset:in:compatibleWith:)`.
 - On iOS 11+, `UIColor(asset:)` just calls the native `UIColor(named:)`.
 - By default, colors are lazily loaded to avoid re-parsing the asset JSON on subsequent use. Cached colors are released if the app receives a memory warning.
 - You can disable in-memory caching of colors using `ColorAssetManager.shared.cachingEnabled = false`.

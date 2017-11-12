@@ -14,6 +14,9 @@ public class ColorAssetManager {
     ///The name of the asset catalog to fetch colors from.
     public var catalogName = "Colors"
 
+    ///The bundle that the asset catalog is in.
+    public var bundle: Bundle?
+
     ///Whether to cache colors in memory as they are accessed.
     public var cachingEnabled = true
 
@@ -29,7 +32,7 @@ public class ColorAssetManager {
     }
 
     func asset(named name: String) -> ColorAsset? {
-        guard let dir = Bundle.main.resourceURL?.appendingPathComponent("\(catalogName).xcassets"),
+        guard let dir = (bundle ?? Bundle.main).resourceURL?.appendingPathComponent("\(catalogName).xcassets"),
             let files = try? FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: []),
             let colorset = files.first(where: { $0.lastPathComponent == "\(name).colorset" }),
             let data = try? Data(contentsOf: colorset.appendingPathComponent("Contents.json")),
