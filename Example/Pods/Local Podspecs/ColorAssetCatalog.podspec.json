@@ -1,6 +1,6 @@
 {
   "name": "ColorAssetCatalog",
-  "version": "0.4.0",
+  "version": "1.0",
   "summary": "Adds iOS 9+ compatibility for named colors in asset catalogs.",
   "description": "This Pod adds iOS 9+ compatibility for named colors in asset catalogs. It extends UIColor with a new optional initializer: `UIColor(asset:)` that works in the same way as `UIColor(named:)`.",
   "homepage": "https://github.com/samrayner/ColorAssetCatalog",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/samrayner/ColorAssetCatalog.git",
-    "tag": "0.4.0"
+    "tag": "1.0"
   },
   "social_media_url": "https://twitter.com/samrayner",
   "platforms": {

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ColorAssetCatalog'
-  s.version          = '0.4.0'
+  s.version          = '1.0'
   s.summary          = 'Adds iOS 9+ compatibility for named colors in asset catalogs.'
 
 # This description is used to generate tags and improve search results.
