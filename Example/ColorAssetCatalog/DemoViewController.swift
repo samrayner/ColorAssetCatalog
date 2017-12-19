@@ -12,7 +12,7 @@ import ColorAssetCatalog
 class DemoViewController: UIViewController {
     @IBOutlet private var mainLabel: UILabel!
 
-    let colorNames = ["universal", "device-specific", "p3", "missing"]
+    let colorNames = ["universal", "device-specific", "p3", "missing", "string-components"]
 
     var currentColorName: String? {
         didSet {
