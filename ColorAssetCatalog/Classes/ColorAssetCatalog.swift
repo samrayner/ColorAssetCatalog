@@ -137,20 +137,33 @@ extension ColorAsset.Color {
 
         private func decodeCGFloat(for key: CodingKeys, in container: KeyedDecodingContainer<CodingKeys>) throws -> CGFloat {
             // Support three formats: float (0-1), integer (0-255) and 8 bit hex.
-            let base: CGFloat
-            let valueString = try container.decode(String.self, forKey: key)
-            if valueString.contains(".") {
-                base = 1.0
-            } else {
-                // Otherwise has a prefix "0x" or is an integer.
-                base = 255
-            }
+            do {
+                let base: CGFloat
+                let valueString = try container.decode(String.self, forKey: key)
+                // Support three formats: float (0-1), integer (0-255) and 8 bit hex.
+                if valueString.contains(".") {
+                    base = 1.0
+                } else {
+                    // Otherwise has a prefix "0x" or is an integer.
+                    base = 255
+                }
 
-            guard let double = Double(valueString) else {
-                throw DecodingError.typeMismatch(CGFloat.self, DecodingError.Context(codingPath: [key], debugDescription: valueString))
-            }
+                guard let double = Double(valueString) else {
+                    throw DecodingError.typeMismatch(CGFloat.self, DecodingError.Context(codingPath: [key], debugDescription: valueString))
+                }
 
-            return CGFloat(double) / base
+                return CGFloat(double) / base
+
+            } catch {
+                // Fallback to numeric values.
+                let value: CGFloat
+                do {
+                    value = CGFloat(try container.decode(Int.self, forKey: key))
+                } catch {
+                    value = CGFloat(try container.decode(CGFloat.self, forKey: key))
+                }
+                return value / CGFloat(value > 1 ? 255 : 1)
+            }
         }
     }
 }
