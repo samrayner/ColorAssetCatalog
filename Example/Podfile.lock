@@ -1,16 +1,16 @@
 PODS:
-  - ColorAssetCatalog (1.0)
+  - ColorAssetCatalog (1.1)
 
 DEPENDENCIES:
   - ColorAssetCatalog (from `../`)
 
 EXTERNAL SOURCES:
   ColorAssetCatalog:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  ColorAssetCatalog: ba25a9547a7f3b72b7553f332e961a6cd913c01b
+  ColorAssetCatalog: 3ee9926c9f01c32c40b605b6b549c5a14d5cc357
 
-PODFILE CHECKSUM: 89fa1c485c40cfe868239bf0487f00e30a7e49da
+PODFILE CHECKSUM: 295851e3adf45e3182b8db34896db90b8e4162c0
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3

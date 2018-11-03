@@ -7,7 +7,5 @@ target 'ColorAssetCatalog_Example' do
 
   target 'ColorAssetCatalog_Tests' do
     inherit! :search_paths
-
-    
   end
 end

@@ -23,7 +23,7 @@ public class ColorAssetManager {
     var cgColors: [String: CGColor] = [:]
 
     private init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(clearCache), name: .UIApplicationDidReceiveMemoryWarning, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(clearCache), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
     }
 
     ///Clear all used color objects from memory.
